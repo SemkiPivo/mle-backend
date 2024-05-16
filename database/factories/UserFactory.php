@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -23,12 +25,20 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $gender = $this->faker->randomElement(['male', 'female']);
+
         return [
-            'name' => fake()->name(),
+            'name' =>  fake()->name($gender),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'phone' => fake()->unique()->phoneNumber(),
+            'birthday' => fake()->date(),
+            'gender' => $gender,
+            'about' => fake()->text(),
+            'is_notifiable' => $this->faker->randomElement([true, false]),
+            'password' => '123456',
             'remember_token' => Str::random(10),
+            'location_id' => Location::all()->random()->id,
         ];
     }
 

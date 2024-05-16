@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->date('birthday');
             $table->string('gender');
-            $table->text('about');
+            $table->text('about')->nullable();
             $table->boolean('is_notifiable');
             $table->rememberToken();
             $table->timestamps();

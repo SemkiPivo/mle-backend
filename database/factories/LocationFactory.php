@@ -17,7 +17,10 @@ class LocationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'city' =>  fake()->city(),
+            'country' => fake()->country(),
+            'latitude' => fake()->randomFloat(),
+            'longitude' => fake()->randomFloat(),
         ];
     }
 }
