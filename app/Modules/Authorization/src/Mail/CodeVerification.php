@@ -30,7 +30,8 @@ class CodeVerification extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.code_verification',
+            markdown: 'welcome',
+//            markdown: 'mail.code_verification',
         );
     }
 

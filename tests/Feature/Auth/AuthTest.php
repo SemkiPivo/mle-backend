@@ -51,14 +51,47 @@ class AuthTest extends TestCase
         $response->assertStatus(200);
     }
 
-//    public function test_successful_code_sending(): void
-//    {
-//        $data = [
-//            'subject' => 'example'
-//        ];
-//
-//        $response = $this->postJson('/api/auth/code/send',$data);
+    public function test_successful_code_sending(): void
+    {
+        $data = [
+            'subject' => 'test'
+        ];
+
+        $response = $this->postJson('/api/auth/code/send',$data);
 //        dd($response->json());
-//        $response->assertStatus(200);
-//    }
+        $response->assertStatus(200);
+    }
+
+    public function test_successful_code_confirmation(): void
+    {
+        $sentData = $this->postJson('/api/auth/code/send',['subject' => 'test'])->json()['data']['code'];
+
+        $data = [
+            'subject' => $sentData['confirmation_subject'],
+            'code' => $sentData['code']
+        ];
+
+//        dd($data);
+
+        $response = $this->postJson('/api/auth/code/confirm',$data);
+//        dd($response->json());
+        $response->assertStatus(200);
+    }
+    public function test_(): void
+    {
+        $sentData = $this->postJson('/api/auth/code/send',['subject' => $this->user->phone])->json()['data']['code'];
+
+        $data = [
+            'phone' => $this->user->phone,
+            'code' => $sentData['code'],
+            'password' => '654321',
+            'password_confirmation' => '654321'
+        ];
+
+//        dd($data, $sentData);
+
+        $response = $this->postJson('api/auth/forgot',$data);
+//        dd($response->json());
+        $response->assertStatus(200);
+    }
 }

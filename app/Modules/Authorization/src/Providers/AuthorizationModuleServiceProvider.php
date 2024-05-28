@@ -8,7 +8,9 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 
 class AuthorizationModuleServiceProvider extends ServiceProvider
 {
-
+    public array $bindings = [
+        VerifyCodeServiceInterface::class => VerifyCodeService::class,
+    ];
     public function boot(): void
     {
         $this->routes(function () {

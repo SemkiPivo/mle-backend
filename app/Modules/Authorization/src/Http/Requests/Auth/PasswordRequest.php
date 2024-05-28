@@ -23,7 +23,7 @@ class PasswordRequest extends FormRequest
     public function rules(Request $request): array
     {
         return [
-            "phone" => ["required","numeric","regex:/^([0-9\s\-\+\(\)]*)$/","digits_between:8,12"],
+            "phone" => ["required"],
             "code" => ["required","numeric","regex:/^([0-9]*)$/","digits:".config("code_verification.code_length")],
             "password" => ["required","string","min:6","max:255","required_with:password_confirmation"],
             'password_confirmation' => ['required_with:password',"string",'same:password','min:6']

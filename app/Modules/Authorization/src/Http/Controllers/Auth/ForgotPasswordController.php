@@ -37,7 +37,7 @@ class ForgotPasswordController extends BaseController
                 ip: $data['ip'],
             );
         } catch (\Throwable $th) {
-            return $this->sendError('Error!', errorMessages: $th);
+            return $this->sendError('Error!', errorMessages: $th->getMessage());
         }
 
         $user_find = User::query()->where("phone", $data['phone'])->first();
@@ -45,7 +45,7 @@ class ForgotPasswordController extends BaseController
             $user_find->update([
                 "password" => Hash::make($data['password']),
             ]);
-            return $this->sendResponse($user_find ,message: "Пароль успешно изменен", );
+            return $this->sendResponse('Success' ,message: "Пароль успешно изменен", );
         }
         return $this->sendError('Error!', errorMessages: "Возникла ошибка при изменении пароля");
     }

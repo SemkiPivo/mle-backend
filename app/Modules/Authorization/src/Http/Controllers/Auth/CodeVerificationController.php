@@ -38,16 +38,14 @@ class CodeVerificationController extends BaseController
         $data = $request->validated();
         $data['ip_address'] = $request->ip();
         $data['confirmation_subject'] = $data['subject'];
-//        $send_type = $request->get('type') ?? 'phone';
 
         $data['code'] = $this->codeService->make($data);
-//        dd($data);
 
-//        if ($send_type === 'email' || !config('code_verification.status')) {
-            Mail::to('kirillpopovrnd@gmail.com')->send(new CodeVerification($data));
-//        } else {
-//            return $this->sendError('Сообщение не было отправлено', code: 400);
-//        }
+       if (!config('code_verification.status')) {
+            Mail::to('test@mail.com')->send(new CodeVerification($data));
+        } else {
+           return $this->sendError('Сообщение не было отправлено', code: 400);
+       }
 
         return $this->sendResponse(message: 'Verification code sent', result: ['code' => $data['code']]);
     }
@@ -67,9 +65,11 @@ class CodeVerificationController extends BaseController
                 subject: $data['subject'],
                 ip: $data['ip'],
             );
+
         } catch (\Throwable $th) {
-            return $this->sendError(error: $th);
+            return $this->sendError($th->getMessage(), 'Данные неверны');
         }
+
 
         $true_code->update(['status' => true]);
 

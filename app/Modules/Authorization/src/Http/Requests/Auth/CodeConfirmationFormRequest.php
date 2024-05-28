@@ -24,7 +24,9 @@ class CodeConfirmationFormRequest extends FormRequest
     {
         return [
             "subject" => ["required"],
-            "code" => ["required","numeric","regex:/^([0-9]*)$/","digits:".config("code_verification.code_length")]
+            "code" => ["required","numeric","regex:/^([0-9]*)$/"
+               ,"digits:".config("code_verification.code_length")
+                ]
         ];
     }
 
