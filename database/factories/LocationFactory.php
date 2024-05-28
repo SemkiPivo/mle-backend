@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Location;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,6 +16,13 @@ class LocationFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    static function linkUsersToLocations(): void
+    {
+        foreach (User::all() as $user){
+            $user->update(['location_id'=>Location::all()->random()->id]);
+        }
+    }
+
     public function definition(): array
     {
         return [

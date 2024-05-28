@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Location;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -13,10 +14,12 @@ use Illuminate\Validation\Rule;
  */
 class UserFactory extends Factory
 {
+    protected $model = User::class;
     /**
      * The current password being used by the factory.
      */
-    protected static ?string $password;
+    protected static ?string $password = '123456';
+
 
     /**
      * Define the model's default state.
@@ -36,9 +39,9 @@ class UserFactory extends Factory
             'gender' => $gender,
             'about' => fake()->text(),
             'is_notifiable' => $this->faker->randomElement([true, false]),
-            'password' => '123456',
+            'password' => self::$password,
             'remember_token' => Str::random(10),
-            'location_id' => Location::all()->random()->id,
+//            'location_id' => Location::all()->random()->id,
         ];
     }
 

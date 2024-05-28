@@ -1,0 +1,492 @@
+name: Авторизация
+description: 'API предназначенное для авторизации пользователя'
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/auth/code/send
+    metadata:
+      groupName: Авторизация
+      groupDescription: 'API предназначенное для авторизации пользователя'
+      subgroup: 'Код подтверждения'
+      subgroupDescription: 'Отправка кода подтверждения номера телефона'
+      title: 'Отправить код'
+      description: 'На номер телефона пользователя отправляется код подтверждения'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      phone_rule:
+        name: phone_rule
+        description: 'Если есть необходимо проверить наличие/отсуствие телефона в базе'
+        required: true
+        example: dont_exist
+        type: string
+        enumValues:
+          - exist
+          - dont_exist
+        exampleWasSpecified: false
+        custom: []
+      type:
+        name: type
+        description: 'Куда отправить код'
+        required: true
+        example: email
+        type: string
+        enumValues:
+          - phone
+          - email
+        exampleWasSpecified: false
+        custom: []
+    cleanQueryParameters:
+      phone_rule: dont_exist
+      type: email
+    bodyParameters:
+      subject:
+        name: subject
+        description: ''
+        required: true
+        example: porro
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      subject: porro
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":null,"message":"OK"}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: '{"data":{"phone":["\u041d\u043e\u043c\u0435\u0440 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430 \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u0435\u043d \u043a \u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044e"]},"message":"\u041d\u043e\u043c\u0435\u0440 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430 \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u0435\u043d \u043a \u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044e"}'
+        headers: []
+        description: 'Если данные не прошли валидацию'
+        custom: []
+    responseFields:
+      data:
+        name: data
+        description: ''
+        required: true
+        example: null
+        type: 'null'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      message:
+        name: message
+        description: ''
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/auth/code/confirm
+    metadata:
+      groupName: Авторизация
+      groupDescription: 'API предназначенное для авторизации пользователя'
+      subgroup: 'Код подтверждения'
+      subgroupDescription: 'Отправка кода подтверждения номера телефона'
+      title: 'Проверить код'
+      description: 'Проверка отправленного кода'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      subject:
+        name: subject
+        description: ''
+        required: true
+        example: unde
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      code:
+        name: code
+        description: 'Must match the regex /^([0-9]*)$/. Must be  digits.'
+        required: true
+        example: ''
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      subject: unde
+      code: ''
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":null,"message":"OK"}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields:
+      data:
+        name: data
+        description: ''
+        required: true
+        example: null
+        type: 'null'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      message:
+        name: message
+        description: ''
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/auth/register
+    metadata:
+      groupName: Авторизация
+      groupDescription: ''
+      subgroup: Регистрация
+      subgroupDescription: 'Регистрация пользователя'
+      title: 'Зарегистрировать пользователя'
+      description: 'Эндпоинт повторно проверяет данные вместе с паролем и авторизует пользователя'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters. Must be at least 1 character.'
+        required: true
+        example: fgvcutvzksqswriapmsakc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 255 characters. Must be at least 3 characters.'
+        required: true
+        example: michael14@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      phone:
+        name: phone
+        description: 'Must be at least 3 characters. Must not be greater than 20 characters.'
+        required: true
+        example: rujjdvseqtqrkvgqxjn
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Must not be greater than 255 characters. Must be at least 6 characters.'
+        required: true
+        example: "elhk%b;f0+6Rx{f.k'<"
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      birthday:
+        name: birthday
+        description: 'Must be a valid date.'
+        required: true
+        example: '2024-05-27T13:16:31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      gender:
+        name: gender
+        description: ''
+        required: true
+        example: female
+        type: string
+        enumValues:
+          - male
+          - female
+        exampleWasSpecified: false
+        custom: []
+      is_notifiable:
+        name: is_notifiable
+        description: ''
+        required: true
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      location_id:
+        name: location_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      name: fgvcutvzksqswriapmsakc
+      email: michael14@example.com
+      phone: rujjdvseqtqrkvgqxjn
+      password: "elhk%b;f0+6Rx{f.k'<"
+      birthday: '2024-05-27T13:16:31'
+      gender: female
+      is_notifiable: false
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"token":"1|YS6hb29ybsALdzkAKghukjgny0Fzju3awd6iRTvvd4155e61"},"message":"OK"}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 400
+        content: '{"data":null,"message":"\u041a\u043e\u0434 \u0443\u0441\u0442\u0430\u0440\u0435\u043b"}'
+        headers: []
+        description: 'Отправлен не валидный код'
+        custom: []
+      -
+        status: 422
+        content: '{"data":{"phone":["\u041d\u043e\u043c\u0435\u0440 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430 \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u0435\u043d \u043a \u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044e"]},"message":"\u041d\u043e\u043c\u0435\u0440 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430 \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u0435\u043d \u043a \u0437\u0430\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044e"}'
+        headers: []
+        description: 'Если данные не прошли валидацию'
+        custom: []
+    responseFields:
+      data:
+        name: data
+        description: ''
+        required: true
+        example: null
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      data.token:
+        name: data.token
+        description: ''
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      message:
+        name: message
+        description: ''
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/auth/login
+    metadata:
+      groupName: Авторизация
+      groupDescription: ''
+      subgroup: Вход
+      subgroupDescription: 'Вход пользователя'
+      title: 'Войти в аккаунт'
+      description: 'Эндпоинт необходим для аунтетификации пользователя в системе'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: madelyn68@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 6 characters. Must not be greater than 255 characters.'
+        required: true
+        example: '[2?G$5icJ'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      email: madelyn68@example.com
+      password: '[2?G$5icJ'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"token":"1|zoBOyNT0SVZAX2yII1hsDs0kmOdvFERU0WAFvIjz370200e1"},"message":"\u0423\u0441\u043f\u0435\u0448\u043d\u044b\u0439 \u0432\u0445\u043e\u0434."}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: '{"data":null,"message":"\u041e\u0448\u0438\u0431\u043a\u0430 \u0430\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u0438. \u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e \u043b\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u044b \u043b\u043e\u0433\u0438\u043d \u0438\u043b\u0438 \u043f\u0430\u0440\u043e\u043b\u044c"}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields:
+      data:
+        name: data
+        description: ''
+        required: true
+        example: null
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      data.token:
+        name: data.token
+        description: ''
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      message:
+        name: message
+        description: ''
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/auth/forgot
+    metadata:
+      groupName: Авторизация
+      groupDescription: ''
+      subgroup: Востановление
+      subgroupDescription: 'Востановление аккаунта пользователя, востановление осуществляется через этап запроса кода подтверждения'
+      title: 'Изменить пароль'
+      description: 'Эндпоинт необходим для изменения пароля'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      phone:
+        name: phone
+        description: 'Must match the regex /^([0-9\s\-\+\(\)]*)$/. Must be between 8 and 12 digits.'
+        required: true
+        example: '69335395'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      code:
+        name: code
+        description: 'Must match the regex /^([0-9]*)$/. Must be  digits.'
+        required: true
+        example: ''
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'This field is required when <code>password_confirmation</code> is present. Must be at least 6 characters. Must not be greater than 255 characters.'
+        required: true
+        example: ')(nr!Kl%i.:q|Ya,B'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: 'This field is required when <code>password</code> is present.  The value and <code>password</code> must match. Must be at least 6 characters.'
+        required: false
+        example: mlcwtocrnfkjxyltrrkvsihsnzhfdilsnbqmripcrvbhbzmdzsgpiqxgnldcusvkdxdpiew
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      phone: '69335395'
+      code: ''
+      password: ')(nr!Kl%i.:q|Ya,B'
+      password_confirmation: mlcwtocrnfkjxyltrrkvsihsnzhfdilsnbqmripcrvbhbzmdzsgpiqxgnldcusvkdxdpiew
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":null,"message":"\u041f\u0430\u0440\u043e\u043b\u044c \u0443\u0441\u043f\u0435\u0448\u043d\u043e \u0438\u0437\u043c\u0435\u043d\u0435\u043d"}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

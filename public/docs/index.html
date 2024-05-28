@@ -1,0 +1,1855 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Laravel Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+    <script>
+        var tryItOutBaseUrl = "http://localhost:8000";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-4.35.0.js"></script>
+
+    <script src="../docs/js/theme-default-4.35.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image"/>
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                    <ul id="tocify-header-introduction" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="introduction">
+                    <a href="#introduction">Introduction</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-authenticating-requests" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authenticating-requests">
+                    <a href="#authenticating-requests">Authenticating requests</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-endpoints" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="endpoints">
+                    <a href="#endpoints">Endpoints</a>
+                </li>
+                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
+                                <a href="#endpoints-GETapi-user">GET api/user</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-user-update">
+                                <a href="#endpoints-POSTapi-user-update">POST api/user/update</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-user-destroy">
+                                <a href="#endpoints-POSTapi-user-destroy">POST api/user/destroy</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-avtorizaciia" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="avtorizaciia">
+                    <a href="#avtorizaciia">Авторизация</a>
+                </li>
+                                    <ul id="tocify-subheader-avtorizaciia" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="avtorizaciia-kod-podtverzdeniia">
+                                <a href="#avtorizaciia-kod-podtverzdeniia">Код подтверждения</a>
+                            </li>
+                                                            <ul id="tocify-subheader-avtorizaciia-kod-podtverzdeniia" class="tocify-subheader">
+                                                                            <li class="tocify-item level-3" data-unique="avtorizaciia-POSTapi-auth-code-send">
+                                            <a href="#avtorizaciia-POSTapi-auth-code-send">Отправить код</a>
+                                        </li>
+                                                                            <li class="tocify-item level-3" data-unique="avtorizaciia-POSTapi-auth-code-confirm">
+                                            <a href="#avtorizaciia-POSTapi-auth-code-confirm">Проверить код</a>
+                                        </li>
+                                                                    </ul>
+                                                                                <li class="tocify-item level-2" data-unique="avtorizaciia-registraciia">
+                                <a href="#avtorizaciia-registraciia">Регистрация</a>
+                            </li>
+                                                            <ul id="tocify-subheader-avtorizaciia-registraciia" class="tocify-subheader">
+                                                                            <li class="tocify-item level-3" data-unique="avtorizaciia-POSTapi-auth-register">
+                                            <a href="#avtorizaciia-POSTapi-auth-register">Зарегистрировать пользователя</a>
+                                        </li>
+                                                                    </ul>
+                                                                                <li class="tocify-item level-2" data-unique="avtorizaciia-vxod">
+                                <a href="#avtorizaciia-vxod">Вход</a>
+                            </li>
+                                                            <ul id="tocify-subheader-avtorizaciia-vxod" class="tocify-subheader">
+                                                                            <li class="tocify-item level-3" data-unique="avtorizaciia-POSTapi-auth-login">
+                                            <a href="#avtorizaciia-POSTapi-auth-login">Войти в аккаунт</a>
+                                        </li>
+                                                                    </ul>
+                                                                                <li class="tocify-item level-2" data-unique="avtorizaciia-vostanovlenie">
+                                <a href="#avtorizaciia-vostanovlenie">Востановление</a>
+                            </li>
+                                                            <ul id="tocify-subheader-avtorizaciia-vostanovlenie" class="tocify-subheader">
+                                                                            <li class="tocify-item level-3" data-unique="avtorizaciia-POSTapi-auth-forgot">
+                                            <a href="#avtorizaciia-POSTapi-auth-forgot">Изменить пароль</a>
+                                        </li>
+                                                                    </ul>
+                                                                        </ul>
+                            </ul>
+            </div>
+
+    <ul class="toc-footer" id="toc-footer">
+                    <li style="padding-bottom: 5px;"><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li style="padding-bottom: 5px;"><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+    </ul>
+
+    <ul class="toc-footer" id="last-updated">
+        <li>Last updated: May 27, 2024</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<aside>
+    <strong>Base URL</strong>: <code>http://localhost:8000</code>
+</aside>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="endpoints">Endpoints</h1>
+
+    
+
+                                <h2 id="endpoints-GETapi-user">GET api/user</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-user">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/user" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/user"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-user">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Test User&quot;,
+            &quot;email&quot;: &quot;test@example.com&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-05-27T12:47:47.000000Z&quot;,
+            &quot;phone&quot;: &quot;+12107875770&quot;,
+            &quot;birthday&quot;: &quot;1989-06-26T00:00:00.000000Z&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;about&quot;: &quot;Voluptas veniam voluptas nostrum culpa qui cupiditate alias. Exercitationem ea molestiae vel fuga. Fugit quia quia velit doloremque.&quot;,
+            &quot;is_notifiable&quot;: 0,
+            &quot;created_at&quot;: &quot;2024-05-27T12:47:47.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;location_id&quot;: 7
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Prof. Nya Klein&quot;,
+            &quot;email&quot;: &quot;hreichel@example.org&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-05-27T12:47:47.000000Z&quot;,
+            &quot;phone&quot;: &quot;+1.413.956.1942&quot;,
+            &quot;birthday&quot;: &quot;1984-06-24T00:00:00.000000Z&quot;,
+            &quot;gender&quot;: &quot;female&quot;,
+            &quot;about&quot;: &quot;Ut deleniti doloribus ducimus. Dignissimos veniam quo nisi aperiam a numquam nam. Incidunt dolor corrupti ea velit commodi fugiat dolores quod. Autem aspernatur dolor et esse neque corporis et.&quot;,
+            &quot;is_notifiable&quot;: 1,
+            &quot;created_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;location_id&quot;: 6
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Mr. Eriberto Larkin&quot;,
+            &quot;email&quot;: &quot;sbecker@example.com&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-05-27T12:47:47.000000Z&quot;,
+            &quot;phone&quot;: &quot;385.736.4516&quot;,
+            &quot;birthday&quot;: &quot;2020-09-26T00:00:00.000000Z&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;about&quot;: &quot;Debitis modi dolores atque perferendis. Enim animi soluta animi aspernatur dolores cum consequatur. Ducimus voluptatem similique dolor nostrum earum tempora esse consequatur.&quot;,
+            &quot;is_notifiable&quot;: 0,
+            &quot;created_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;location_id&quot;: 2
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;name&quot;: &quot;Dominique Borer&quot;,
+            &quot;email&quot;: &quot;nelda.morar@example.net&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-05-27T12:47:47.000000Z&quot;,
+            &quot;phone&quot;: &quot;740.426.2544&quot;,
+            &quot;birthday&quot;: &quot;1989-07-15T00:00:00.000000Z&quot;,
+            &quot;gender&quot;: &quot;female&quot;,
+            &quot;about&quot;: &quot;Minus iure accusamus quaerat laudantium enim autem dolores nihil. Ullam perferendis cum tempore cumque dignissimos totam delectus. Consectetur nobis beatae repellat omnis est illo.&quot;,
+            &quot;is_notifiable&quot;: 1,
+            &quot;created_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;location_id&quot;: 4
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;name&quot;: &quot;German Koepp&quot;,
+            &quot;email&quot;: &quot;ari.greenholt@example.com&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-05-27T12:47:48.000000Z&quot;,
+            &quot;phone&quot;: &quot;1-820-509-5431&quot;,
+            &quot;birthday&quot;: &quot;2008-07-19T00:00:00.000000Z&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;about&quot;: &quot;Necessitatibus rerum sed non voluptatem at est et. Sequi sit voluptate dolores. Quo cupiditate sunt enim corporis eius voluptatem.&quot;,
+            &quot;is_notifiable&quot;: 0,
+            &quot;created_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;location_id&quot;: 6
+        },
+        {
+            &quot;id&quot;: 6,
+            &quot;name&quot;: &quot;Berniece Nienow&quot;,
+            &quot;email&quot;: &quot;fvandervort@example.com&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-05-27T12:47:48.000000Z&quot;,
+            &quot;phone&quot;: &quot;947.857.5748&quot;,
+            &quot;birthday&quot;: &quot;2021-06-16T00:00:00.000000Z&quot;,
+            &quot;gender&quot;: &quot;female&quot;,
+            &quot;about&quot;: &quot;Voluptas voluptatem quo dolorem commodi ex velit. Maiores possimus laboriosam saepe odit assumenda. Necessitatibus amet itaque expedita.&quot;,
+            &quot;is_notifiable&quot;: 1,
+            &quot;created_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;location_id&quot;: 2
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;name&quot;: &quot;Clark Jones&quot;,
+            &quot;email&quot;: &quot;hamill.ada@example.org&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-05-27T12:47:48.000000Z&quot;,
+            &quot;phone&quot;: &quot;1-860-591-2393&quot;,
+            &quot;birthday&quot;: &quot;1988-10-19T00:00:00.000000Z&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;about&quot;: &quot;Qui et voluptas dolorem laudantium iure aut. Doloremque ut totam est sit qui corporis officia.&quot;,
+            &quot;is_notifiable&quot;: 0,
+            &quot;created_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;location_id&quot;: 1
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;name&quot;: &quot;Raphaelle Bins&quot;,
+            &quot;email&quot;: &quot;schoen.zetta@example.org&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-05-27T12:47:48.000000Z&quot;,
+            &quot;phone&quot;: &quot;616-802-8932&quot;,
+            &quot;birthday&quot;: &quot;2018-07-19T00:00:00.000000Z&quot;,
+            &quot;gender&quot;: &quot;female&quot;,
+            &quot;about&quot;: &quot;Beatae fuga sunt reiciendis a eius tenetur voluptatum. Consequatur consequatur quia dicta consequatur. Iusto natus nihil aut voluptas est modi. Nihil occaecati qui aut quisquam voluptas.&quot;,
+            &quot;is_notifiable&quot;: 0,
+            &quot;created_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;location_id&quot;: 10
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;name&quot;: &quot;Miss Yadira Okuneva I&quot;,
+            &quot;email&quot;: &quot;alf80@example.net&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-05-27T12:47:48.000000Z&quot;,
+            &quot;phone&quot;: &quot;1-272-633-6831&quot;,
+            &quot;birthday&quot;: &quot;2013-03-08T00:00:00.000000Z&quot;,
+            &quot;gender&quot;: &quot;female&quot;,
+            &quot;about&quot;: &quot;Fugit ipsam deserunt doloremque sed ea et. Occaecati exercitationem in est blanditiis natus. Inventore ad rerum iure sequi soluta.&quot;,
+            &quot;is_notifiable&quot;: 0,
+            &quot;created_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;location_id&quot;: 5
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;name&quot;: &quot;Dr. Kaleigh Funk&quot;,
+            &quot;email&quot;: &quot;jasmin.harber@example.com&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;phone&quot;: &quot;+1-947-859-0007&quot;,
+            &quot;birthday&quot;: &quot;2016-10-03T00:00:00.000000Z&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;about&quot;: &quot;Voluptas aut voluptas velit et minima. Non provident libero minus asperiores. Id incidunt magnam minima quibusdam est. Beatae est quis et. Aliquam aperiam animi officiis molestias.&quot;,
+            &quot;is_notifiable&quot;: 0,
+            &quot;created_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;location_id&quot;: 4
+        },
+        {
+            &quot;id&quot;: 11,
+            &quot;name&quot;: &quot;Murl Hermiston DDS&quot;,
+            &quot;email&quot;: &quot;cale.tremblay@example.net&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;phone&quot;: &quot;774.540.8721&quot;,
+            &quot;birthday&quot;: &quot;2014-06-19T00:00:00.000000Z&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;about&quot;: &quot;Et in aut rerum ipsum. Enim tempora libero aut ducimus et accusantium eius dolorem. Soluta voluptatem explicabo officia vitae velit.&quot;,
+            &quot;is_notifiable&quot;: 1,
+            &quot;created_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-05-27T12:47:49.000000Z&quot;,
+            &quot;location_id&quot;: 4
+        }
+    ],
+    &quot;message&quot;: true
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-user" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-user"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-user"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-user">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-user" data-method="GET"
+      data-path="api/user"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-user"
+                    onclick="tryItOut('GETapi-user');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-user"
+                    onclick="cancelTryOut('GETapi-user');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-user"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/user</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-user"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-user"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-POSTapi-user-update">POST api/user/update</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-user-update">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/user/update" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"rdgaahyunpgmnooudynkyvhzdlkdkhzvoniirtenskyrvxeurioqgldxfijaexxzlrigvzidjcbxqwotiav\",
+    \"email\": \"emmett46@example.net\",
+    \"phone\": \"mwjrruljcycana\",
+    \"password\": \"ul8@\\\"m3B9(\\/-t\",
+    \"birthday\": \"2024-05-27T13:16:31\",
+    \"gender\": \"female\",
+    \"about\": \"dicta\",
+    \"is_notifiable\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/user/update"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "rdgaahyunpgmnooudynkyvhzdlkdkhzvoniirtenskyrvxeurioqgldxfijaexxzlrigvzidjcbxqwotiav",
+    "email": "emmett46@example.net",
+    "phone": "mwjrruljcycana",
+    "password": "ul8@\"m3B9(\/-t",
+    "birthday": "2024-05-27T13:16:31",
+    "gender": "female",
+    "about": "dicta",
+    "is_notifiable": true
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-user-update">
+</span>
+<span id="execution-results-POSTapi-user-update" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-user-update"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-user-update"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-user-update" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-user-update">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-user-update" data-method="POST"
+      data-path="api/user/update"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-user-update', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-user-update"
+                    onclick="tryItOut('POSTapi-user-update');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-user-update"
+                    onclick="cancelTryOut('POSTapi-user-update');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-user-update"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/user/update</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-user-update"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-user-update"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-user-update"
+               value="rdgaahyunpgmnooudynkyvhzdlkdkhzvoniirtenskyrvxeurioqgldxfijaexxzlrigvzidjcbxqwotiav"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Must be at least 1 character. Example: <code>rdgaahyunpgmnooudynkyvhzdlkdkhzvoniirtenskyrvxeurioqgldxfijaexxzlrigvzidjcbxqwotiav</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-user-update"
+               value="emmett46@example.net"
+               data-component="body">
+    <br>
+<p>Must be a valid email address. Must not be greater than 255 characters. Must be at least 3 characters. Example: <code>emmett46@example.net</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="phone"                data-endpoint="POSTapi-user-update"
+               value="mwjrruljcycana"
+               data-component="body">
+    <br>
+<p>Must be at least 3 characters. Must not be greater than 14 characters. Example: <code>mwjrruljcycana</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="POSTapi-user-update"
+               value="ul8@"m3B9(/-t"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Must be at least 6 characters. Example: <code>ul8@"m3B9(/-t</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>birthday</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="birthday"                data-endpoint="POSTapi-user-update"
+               value="2024-05-27T13:16:31"
+               data-component="body">
+    <br>
+<p>Must be a valid date. Example: <code>2024-05-27T13:16:31</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="gender"                data-endpoint="POSTapi-user-update"
+               value="female"
+               data-component="body">
+    <br>
+<p>Example: <code>female</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>about</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="about"                data-endpoint="POSTapi-user-update"
+               value="dicta"
+               data-component="body">
+    <br>
+<p>Example: <code>dicta</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_notifiable</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+                <label data-endpoint="POSTapi-user-update" style="display: none">
+            <input type="radio" name="is_notifiable"
+                   value="true"
+                   data-endpoint="POSTapi-user-update"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-user-update" style="display: none">
+            <input type="radio" name="is_notifiable"
+                   value="false"
+                   data-endpoint="POSTapi-user-update"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>location_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="location_id"                data-endpoint="POSTapi-user-update"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POSTapi-user-destroy">POST api/user/destroy</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-user-destroy">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/user/destroy" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/user/destroy"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-user-destroy">
+</span>
+<span id="execution-results-POSTapi-user-destroy" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-user-destroy"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-user-destroy"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-user-destroy" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-user-destroy">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-user-destroy" data-method="POST"
+      data-path="api/user/destroy"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-user-destroy', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-user-destroy"
+                    onclick="tryItOut('POSTapi-user-destroy');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-user-destroy"
+                    onclick="cancelTryOut('POSTapi-user-destroy');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-user-destroy"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/user/destroy</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-user-destroy"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-user-destroy"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                <h1 id="avtorizaciia">Авторизация</h1>
+
+    <p>API предназначенное для авторизации пользователя</p>
+
+                        <h2 id="avtorizaciia-kod-podtverzdeniia">Код подтверждения</h2>
+                                        <p>
+                    <p>Отправка кода подтверждения номера телефона</p>
+                </p>
+                                        <h2 id="avtorizaciia-POSTapi-auth-code-send">Отправить код</h2>
+
+<p>
+</p>
+
+<p>На номер телефона пользователя отправляется код подтверждения</p>
+
+<span id="example-requests-POSTapi-auth-code-send">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/auth/code/send?phone_rule=dont_exist&amp;type=email" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"subject\": \"porro\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/auth/code/send"
+);
+
+const params = {
+    "phone_rule": "dont_exist",
+    "type": "email",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "subject": "porro"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-auth-code-send">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;message&quot;: &quot;OK&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Если данные не прошли валидацию):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;phone&quot;: [
+            &quot;Номер телефона обязателен к заполнению&quot;
+        ]
+    },
+    &quot;message&quot;: &quot;Номер телефона обязателен к заполнению&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-auth-code-send" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-auth-code-send"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-auth-code-send"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-auth-code-send" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-auth-code-send">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-auth-code-send" data-method="POST"
+      data-path="api/auth/code/send"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-auth-code-send', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-auth-code-send"
+                    onclick="tryItOut('POSTapi-auth-code-send');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-auth-code-send"
+                    onclick="cancelTryOut('POSTapi-auth-code-send');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-auth-code-send"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/auth/code/send</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-auth-code-send"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-auth-code-send"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>phone_rule</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone_rule"                data-endpoint="POSTapi-auth-code-send"
+               value="dont_exist"
+               data-component="query">
+    <br>
+<p>Если есть необходимо проверить наличие/отсуствие телефона в базе Example: <code>dont_exist</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>exist</code></li> <li><code>dont_exist</code></li></ul>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="type"                data-endpoint="POSTapi-auth-code-send"
+               value="email"
+               data-component="query">
+    <br>
+<p>Куда отправить код Example: <code>email</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>phone</code></li> <li><code>email</code></li></ul>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>subject</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="subject"                data-endpoint="POSTapi-auth-code-send"
+               value="porro"
+               data-component="body">
+    <br>
+<p>Example: <code>porro</code></p>
+        </div>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+    <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>data</code></b>&nbsp;&nbsp;
+<small>null</small>&nbsp;
+ &nbsp;
+<br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+
+        </div>
+                        <h2 id="avtorizaciia-POSTapi-auth-code-confirm">Проверить код</h2>
+
+<p>
+</p>
+
+<p>Проверка отправленного кода</p>
+
+<span id="example-requests-POSTapi-auth-code-confirm">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/auth/code/confirm" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"subject\": \"unde\",
+    \"code\": \"\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/auth/code/confirm"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "subject": "unde",
+    "code": ""
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-auth-code-confirm">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;message&quot;: &quot;OK&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-auth-code-confirm" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-auth-code-confirm"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-auth-code-confirm"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-auth-code-confirm" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-auth-code-confirm">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-auth-code-confirm" data-method="POST"
+      data-path="api/auth/code/confirm"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-auth-code-confirm', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-auth-code-confirm"
+                    onclick="tryItOut('POSTapi-auth-code-confirm');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-auth-code-confirm"
+                    onclick="cancelTryOut('POSTapi-auth-code-confirm');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-auth-code-confirm"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/auth/code/confirm</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-auth-code-confirm"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-auth-code-confirm"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>subject</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="subject"                data-endpoint="POSTapi-auth-code-confirm"
+               value="unde"
+               data-component="body">
+    <br>
+<p>Example: <code>unde</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="POSTapi-auth-code-confirm"
+               value=""
+               data-component="body">
+    <br>
+<p>Must match the regex /^([0-9]*)$/. Must be  digits.</p>
+        </div>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+    <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>data</code></b>&nbsp;&nbsp;
+<small>null</small>&nbsp;
+ &nbsp;
+<br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+
+        </div>
+                                    <h2 id="avtorizaciia-registraciia">Регистрация</h2>
+                                        <p>
+                    <p>Регистрация пользователя</p>
+                </p>
+                                        <h2 id="avtorizaciia-POSTapi-auth-register">Зарегистрировать пользователя</h2>
+
+<p>
+</p>
+
+<p>Эндпоинт повторно проверяет данные вместе с паролем и авторизует пользователя</p>
+
+<span id="example-requests-POSTapi-auth-register">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/auth/register" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"fgvcutvzksqswriapmsakc\",
+    \"email\": \"michael14@example.com\",
+    \"phone\": \"rujjdvseqtqrkvgqxjn\",
+    \"password\": \"elhk%b;f0+6Rx{f.k\'&lt;\",
+    \"birthday\": \"2024-05-27T13:16:31\",
+    \"gender\": \"female\",
+    \"is_notifiable\": false
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/auth/register"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "fgvcutvzksqswriapmsakc",
+    "email": "michael14@example.com",
+    "phone": "rujjdvseqtqrkvgqxjn",
+    "password": "elhk%b;f0+6Rx{f.k'&lt;",
+    "birthday": "2024-05-27T13:16:31",
+    "gender": "female",
+    "is_notifiable": false
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-auth-register">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;token&quot;: &quot;1|YS6hb29ybsALdzkAKghukjgny0Fzju3awd6iRTvvd4155e61&quot;
+    },
+    &quot;message&quot;: &quot;OK&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (400, Отправлен не валидный код):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;message&quot;: &quot;Код устарел&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Если данные не прошли валидацию):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;phone&quot;: [
+            &quot;Номер телефона обязателен к заполнению&quot;
+        ]
+    },
+    &quot;message&quot;: &quot;Номер телефона обязателен к заполнению&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-auth-register" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-auth-register"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-auth-register"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-auth-register" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-auth-register">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-auth-register" data-method="POST"
+      data-path="api/auth/register"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-auth-register', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-auth-register"
+                    onclick="tryItOut('POSTapi-auth-register');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-auth-register"
+                    onclick="cancelTryOut('POSTapi-auth-register');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-auth-register"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/auth/register</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-auth-register"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-auth-register"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-auth-register"
+               value="fgvcutvzksqswriapmsakc"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Must be at least 1 character. Example: <code>fgvcutvzksqswriapmsakc</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-auth-register"
+               value="michael14@example.com"
+               data-component="body">
+    <br>
+<p>Must be a valid email address. Must not be greater than 255 characters. Must be at least 3 characters. Example: <code>michael14@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone"                data-endpoint="POSTapi-auth-register"
+               value="rujjdvseqtqrkvgqxjn"
+               data-component="body">
+    <br>
+<p>Must be at least 3 characters. Must not be greater than 20 characters. Example: <code>rujjdvseqtqrkvgqxjn</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="POSTapi-auth-register"
+               value="elhk%b;f0+6Rx{f.k'<"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Must be at least 6 characters. Example: <code>elhk%b;f0+6Rx{f.k'&lt;</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>birthday</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="birthday"                data-endpoint="POSTapi-auth-register"
+               value="2024-05-27T13:16:31"
+               data-component="body">
+    <br>
+<p>Must be a valid date. Example: <code>2024-05-27T13:16:31</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="gender"                data-endpoint="POSTapi-auth-register"
+               value="female"
+               data-component="body">
+    <br>
+<p>Example: <code>female</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_notifiable</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-auth-register" style="display: none">
+            <input type="radio" name="is_notifiable"
+                   value="true"
+                   data-endpoint="POSTapi-auth-register"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-auth-register" style="display: none">
+            <input type="radio" name="is_notifiable"
+                   value="false"
+                   data-endpoint="POSTapi-auth-register"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>location_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="location_id"                data-endpoint="POSTapi-auth-register"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+    <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>data</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+ &nbsp;
+<br>
+
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+
+                    </div>
+                                    </details>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+
+        </div>
+                                    <h2 id="avtorizaciia-vxod">Вход</h2>
+                                        <p>
+                    <p>Вход пользователя</p>
+                </p>
+                                        <h2 id="avtorizaciia-POSTapi-auth-login">Войти в аккаунт</h2>
+
+<p>
+</p>
+
+<p>Эндпоинт необходим для аунтетификации пользователя в системе</p>
+
+<span id="example-requests-POSTapi-auth-login">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/auth/login" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"madelyn68@example.com\",
+    \"password\": \"[2?G$5icJ\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/auth/login"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "madelyn68@example.com",
+    "password": "[2?G$5icJ"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-auth-login">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;token&quot;: &quot;1|zoBOyNT0SVZAX2yII1hsDs0kmOdvFERU0WAFvIjz370200e1&quot;
+    },
+    &quot;message&quot;: &quot;Успешный вход.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;message&quot;: &quot;Ошибка авторизации. Проверьте правильно ли указаны логин или пароль&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-auth-login" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-auth-login"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-auth-login"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-auth-login" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-auth-login">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-auth-login" data-method="POST"
+      data-path="api/auth/login"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-auth-login', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-auth-login"
+                    onclick="tryItOut('POSTapi-auth-login');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-auth-login"
+                    onclick="cancelTryOut('POSTapi-auth-login');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-auth-login"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/auth/login</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-auth-login"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-auth-login"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-auth-login"
+               value="madelyn68@example.com"
+               data-component="body">
+    <br>
+<p>Must be a valid email address. Example: <code>madelyn68@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="POSTapi-auth-login"
+               value="[2?G$5icJ"
+               data-component="body">
+    <br>
+<p>Must be at least 6 characters. Must not be greater than 255 characters. Example: <code>[2?G$5icJ</code></p>
+        </div>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+    <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>data</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+ &nbsp;
+<br>
+
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+
+                    </div>
+                                    </details>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+<br>
+
+        </div>
+                                    <h2 id="avtorizaciia-vostanovlenie">Востановление</h2>
+                                        <p>
+                    <p>Востановление аккаунта пользователя, востановление осуществляется через этап запроса кода подтверждения</p>
+                </p>
+                                        <h2 id="avtorizaciia-POSTapi-auth-forgot">Изменить пароль</h2>
+
+<p>
+</p>
+
+<p>Эндпоинт необходим для изменения пароля</p>
+
+<span id="example-requests-POSTapi-auth-forgot">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/auth/forgot" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"phone\": \"69335395\",
+    \"code\": \"\",
+    \"password\": \")(nr!Kl%i.:q|Ya,B\",
+    \"password_confirmation\": \"mlcwtocrnfkjxyltrrkvsihsnzhfdilsnbqmripcrvbhbzmdzsgpiqxgnldcusvkdxdpiew\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/auth/forgot"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "phone": "69335395",
+    "code": "",
+    "password": ")(nr!Kl%i.:q|Ya,B",
+    "password_confirmation": "mlcwtocrnfkjxyltrrkvsihsnzhfdilsnbqmripcrvbhbzmdzsgpiqxgnldcusvkdxdpiew"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-auth-forgot">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;message&quot;: &quot;Пароль успешно изменен&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-auth-forgot" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-auth-forgot"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-auth-forgot"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-auth-forgot" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-auth-forgot">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-auth-forgot" data-method="POST"
+      data-path="api/auth/forgot"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-auth-forgot', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-auth-forgot"
+                    onclick="tryItOut('POSTapi-auth-forgot');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-auth-forgot"
+                    onclick="cancelTryOut('POSTapi-auth-forgot');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-auth-forgot"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/auth/forgot</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-auth-forgot"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-auth-forgot"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone"                data-endpoint="POSTapi-auth-forgot"
+               value="69335395"
+               data-component="body">
+    <br>
+<p>Must match the regex /^([0-9\s-+()]*)$/. Must be between 8 and 12 digits. Example: <code>69335395</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="POSTapi-auth-forgot"
+               value=""
+               data-component="body">
+    <br>
+<p>Must match the regex /^([0-9]*)$/. Must be  digits.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="POSTapi-auth-forgot"
+               value=")(nr!Kl%i.:q|Ya,B"
+               data-component="body">
+    <br>
+<p>This field is required when <code>password_confirmation</code> is present. Must be at least 6 characters. Must not be greater than 255 characters. Example: <code>)(nr!Kl%i.:q|Ya,B</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="password_confirmation"                data-endpoint="POSTapi-auth-forgot"
+               value="mlcwtocrnfkjxyltrrkvsihsnzhfdilsnbqmripcrvbhbzmdzsgpiqxgnldcusvkdxdpiew"
+               data-component="body">
+    <br>
+<p>This field is required when <code>password</code> is present.  The value and <code>password</code> must match. Must be at least 6 characters. Example: <code>mlcwtocrnfkjxyltrrkvsihsnzhfdilsnbqmripcrvbhbzmdzsgpiqxgnldcusvkdxdpiew</code></p>
+        </div>
+        </form>
+
+            
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

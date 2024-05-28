@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(UserController::class)->prefix('/user')->name('user.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/profile', 'show')->name('show');
-    Route::get('/store', 'store')->name('store');
+//    Route::post('/store', 'store')->name('store');
     Route::post('/update', 'update')->name('update');
     Route::post('/destroy', 'destroy')->name('destroy');
 });
