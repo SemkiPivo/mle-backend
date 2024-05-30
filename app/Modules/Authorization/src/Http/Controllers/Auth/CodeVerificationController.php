@@ -26,23 +26,20 @@ class CodeVerificationController extends BaseController
     ) {
     }
 
-    #[Endpoint('Отправить код', 'На номер телефона пользователя отправляется код подтверждения')]
+    #[Endpoint('Отправить код', 'На электронную почту пользователя отправляется код подтверждения')]
     #[Response(['data' => null, 'message' => 'OK',], 200)]
-    #[Response(['data' => ['phone' => ['Номер телефона обязателен к заполнению']], 'message' => 'Номер телефона обязателен к заполнению'], status: 422, description: 'Если данные не прошли валидацию')]
     #[ResponseField('data', 'null')]
     #[ResponseField('message', 'string')]
-    #[QueryParam(name: 'phone_rule', description: 'Если есть необходимо проверить наличие/отсуствие телефона в базе', enum: ['exist', 'dont_exist'])]
-    #[QueryParam(name: 'type', description: 'Куда отправить код', enum: ['phone', 'email'])]
     public function sendCode(CodeFormRequest $request): JsonResponse
     {
         $data = $request->validated();
+
         $data['ip_address'] = $request->ip();
         $data['confirmation_subject'] = $data['subject'];
-
         $data['code'] = $this->codeService->make($data);
 
        if (!config('code_verification.status')) {
-            Mail::to('test@mail.com')->send(new CodeVerification($data));
+            Mail::to($data['subject'])->send(new CodeVerification($data));
         } else {
            return $this->sendError('Сообщение не было отправлено', code: 400);
        }

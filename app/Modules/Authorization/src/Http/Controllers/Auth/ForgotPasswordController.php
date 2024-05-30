@@ -33,14 +33,14 @@ class ForgotPasswordController extends BaseController
         try {
             $this->codeService->check(
                 code: $data['code'],
-                subject: $data['phone'],
+                subject: $data['email'],
                 ip: $data['ip'],
             );
         } catch (\Throwable $th) {
             return $this->sendError('Error!', errorMessages: $th->getMessage());
         }
 
-        $user_find = User::query()->where("phone", $data['phone'])->first();
+        $user_find = User::query()->where("email", $data['email'])->first();
         if ($user_find) {
             $user_find->update([
                 "password" => Hash::make($data['password']),

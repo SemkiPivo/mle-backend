@@ -23,7 +23,7 @@ class CodeConfirmationFormRequest extends FormRequest
     public function rules(Request $request): array
     {
         return [
-            "subject" => ["required"],
+            "subject" => ["required", "email"],
             "code" => ["required","numeric","regex:/^([0-9]*)$/"
                ,"digits:".config("code_verification.code_length")
                 ]

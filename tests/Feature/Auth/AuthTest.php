@@ -54,41 +54,37 @@ class AuthTest extends TestCase
     public function test_successful_code_sending(): void
     {
         $data = [
-            'subject' => 'test'
+            'subject' => 'test@example.com'
         ];
 
         $response = $this->postJson('/api/auth/code/send',$data);
-//        dd($response->json());
         $response->assertStatus(200);
     }
 
     public function test_successful_code_confirmation(): void
     {
-        $sentData = $this->postJson('/api/auth/code/send',['subject' => 'test'])->json()['data']['code'];
+        $sentData = $this->postJson('/api/auth/code/send',['subject' => 'test@example.com'])->json()['data']['code'];
 
         $data = [
             'subject' => $sentData['confirmation_subject'],
             'code' => $sentData['code']
         ];
 
-//        dd($data);
-
         $response = $this->postJson('/api/auth/code/confirm',$data);
-//        dd($response->json());
         $response->assertStatus(200);
     }
-    public function test_(): void
+    public function test_successful_password_restoration(): void
     {
-        $sentData = $this->postJson('/api/auth/code/send',['subject' => $this->user->phone])->json()['data']['code'];
+//        dd($this->postJson('/api/auth/code/send',['subject' => $this->user->email])->json());
+        $sentData = $this->postJson('/api/auth/code/send',['subject' => $this->user->email])->json()['data']['code'];
 
         $data = [
-            'phone' => $this->user->phone,
+            'email' => $this->user->email,
             'code' => $sentData['code'],
             'password' => '654321',
             'password_confirmation' => '654321'
         ];
 
-//        dd($data, $sentData);
 
         $response = $this->postJson('api/auth/forgot',$data);
 //        dd($response->json());

@@ -4,6 +4,7 @@ namespace Authorization\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PasswordRequest extends FormRequest
 {
@@ -23,7 +24,7 @@ class PasswordRequest extends FormRequest
     public function rules(Request $request): array
     {
         return [
-            "phone" => ["required"],
+            "email" => ["required", "email", Rule::exists('users', 'email')],
             "code" => ["required","numeric","regex:/^([0-9]*)$/","digits:".config("code_verification.code_length")],
             "password" => ["required","string","min:6","max:255","required_with:password_confirmation"],
             'password_confirmation' => ['required_with:password',"string",'same:password','min:6']

@@ -29,7 +29,6 @@ class RegisterController extends BaseController
 
     #[Endpoint("Зарегистрировать пользователя", "Эндпоинт повторно проверяет данные вместе с паролем и авторизует пользователя")]
     #[Response(["data" => ["token" => "1|YS6hb29ybsALdzkAKghukjgny0Fzju3awd6iRTvvd4155e61"], "message" => "OK",], 200)]
-    #[Response(["data" => ["phone" => ["Номер телефона обязателен к заполнению"]], "message" => "Номер телефона обязателен к заполнению"], status: 422, description: "Если данные не прошли валидацию")]
     #[Response(["data" => null, "message" => "Код устарел",], status: 400, description: "Отправлен не валидный код")]
     #[ResponseField("data", "array")]
     #[ResponseField("data.token", "string")]

@@ -7,459 +7,12 @@ servers:
   -
     url: 'http://localhost:8000'
 paths:
-  /api/user:
-    get:
-      summary: ''
-      operationId: getApiUser
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  success: true
-                  data:
-                    -
-                      id: 1
-                      name: 'Test User'
-                      email: test@example.com
-                      email_verified_at: '2024-05-27T12:47:47.000000Z'
-                      phone: '+12107875770'
-                      birthday: '1989-06-26T00:00:00.000000Z'
-                      gender: male
-                      about: 'Voluptas veniam voluptas nostrum culpa qui cupiditate alias. Exercitationem ea molestiae vel fuga. Fugit quia quia velit doloremque.'
-                      is_notifiable: 0
-                      created_at: '2024-05-27T12:47:47.000000Z'
-                      updated_at: '2024-05-27T12:47:49.000000Z'
-                      location_id: 7
-                    -
-                      id: 2
-                      name: 'Prof. Nya Klein'
-                      email: hreichel@example.org
-                      email_verified_at: '2024-05-27T12:47:47.000000Z'
-                      phone: +1.413.956.1942
-                      birthday: '1984-06-24T00:00:00.000000Z'
-                      gender: female
-                      about: 'Ut deleniti doloribus ducimus. Dignissimos veniam quo nisi aperiam a numquam nam. Incidunt dolor corrupti ea velit commodi fugiat dolores quod. Autem aspernatur dolor et esse neque corporis et.'
-                      is_notifiable: 1
-                      created_at: '2024-05-27T12:47:49.000000Z'
-                      updated_at: '2024-05-27T12:47:49.000000Z'
-                      location_id: 6
-                    -
-                      id: 3
-                      name: 'Mr. Eriberto Larkin'
-                      email: sbecker@example.com
-                      email_verified_at: '2024-05-27T12:47:47.000000Z'
-                      phone: 385.736.4516
-                      birthday: '2020-09-26T00:00:00.000000Z'
-                      gender: male
-                      about: 'Debitis modi dolores atque perferendis. Enim animi soluta animi aspernatur dolores cum consequatur. Ducimus voluptatem similique dolor nostrum earum tempora esse consequatur.'
-                      is_notifiable: 0
-                      created_at: '2024-05-27T12:47:49.000000Z'
-                      updated_at: '2024-05-27T12:47:49.000000Z'
-                      location_id: 2
-                    -
-                      id: 4
-                      name: 'Dominique Borer'
-                      email: nelda.morar@example.net
-                      email_verified_at: '2024-05-27T12:47:47.000000Z'
-                      phone: 740.426.2544
-                      birthday: '1989-07-15T00:00:00.000000Z'
-                      gender: female
-                      about: 'Minus iure accusamus quaerat laudantium enim autem dolores nihil. Ullam perferendis cum tempore cumque dignissimos totam delectus. Consectetur nobis beatae repellat omnis est illo.'
-                      is_notifiable: 1
-                      created_at: '2024-05-27T12:47:49.000000Z'
-                      updated_at: '2024-05-27T12:47:49.000000Z'
-                      location_id: 4
-                    -
-                      id: 5
-                      name: 'German Koepp'
-                      email: ari.greenholt@example.com
-                      email_verified_at: '2024-05-27T12:47:48.000000Z'
-                      phone: 1-820-509-5431
-                      birthday: '2008-07-19T00:00:00.000000Z'
-                      gender: male
-                      about: 'Necessitatibus rerum sed non voluptatem at est et. Sequi sit voluptate dolores. Quo cupiditate sunt enim corporis eius voluptatem.'
-                      is_notifiable: 0
-                      created_at: '2024-05-27T12:47:49.000000Z'
-                      updated_at: '2024-05-27T12:47:49.000000Z'
-                      location_id: 6
-                    -
-                      id: 6
-                      name: 'Berniece Nienow'
-                      email: fvandervort@example.com
-                      email_verified_at: '2024-05-27T12:47:48.000000Z'
-                      phone: 947.857.5748
-                      birthday: '2021-06-16T00:00:00.000000Z'
-                      gender: female
-                      about: 'Voluptas voluptatem quo dolorem commodi ex velit. Maiores possimus laboriosam saepe odit assumenda. Necessitatibus amet itaque expedita.'
-                      is_notifiable: 1
-                      created_at: '2024-05-27T12:47:49.000000Z'
-                      updated_at: '2024-05-27T12:47:49.000000Z'
-                      location_id: 2
-                    -
-                      id: 7
-                      name: 'Clark Jones'
-                      email: hamill.ada@example.org
-                      email_verified_at: '2024-05-27T12:47:48.000000Z'
-                      phone: 1-860-591-2393
-                      birthday: '1988-10-19T00:00:00.000000Z'
-                      gender: male
-                      about: 'Qui et voluptas dolorem laudantium iure aut. Doloremque ut totam est sit qui corporis officia.'
-                      is_notifiable: 0
-                      created_at: '2024-05-27T12:47:49.000000Z'
-                      updated_at: '2024-05-27T12:47:49.000000Z'
-                      location_id: 1
-                    -
-                      id: 8
-                      name: 'Raphaelle Bins'
-                      email: schoen.zetta@example.org
-                      email_verified_at: '2024-05-27T12:47:48.000000Z'
-                      phone: 616-802-8932
-                      birthday: '2018-07-19T00:00:00.000000Z'
-                      gender: female
-                      about: 'Beatae fuga sunt reiciendis a eius tenetur voluptatum. Consequatur consequatur quia dicta consequatur. Iusto natus nihil aut voluptas est modi. Nihil occaecati qui aut quisquam voluptas.'
-                      is_notifiable: 0
-                      created_at: '2024-05-27T12:47:49.000000Z'
-                      updated_at: '2024-05-27T12:47:49.000000Z'
-                      location_id: 10
-                    -
-                      id: 9
-                      name: 'Miss Yadira Okuneva I'
-                      email: alf80@example.net
-                      email_verified_at: '2024-05-27T12:47:48.000000Z'
-                      phone: 1-272-633-6831
-                      birthday: '2013-03-08T00:00:00.000000Z'
-                      gender: female
-                      about: 'Fugit ipsam deserunt doloremque sed ea et. Occaecati exercitationem in est blanditiis natus. Inventore ad rerum iure sequi soluta.'
-                      is_notifiable: 0
-                      created_at: '2024-05-27T12:47:49.000000Z'
-                      updated_at: '2024-05-27T12:47:49.000000Z'
-                      location_id: 5
-                    -
-                      id: 10
-                      name: 'Dr. Kaleigh Funk'
-                      email: jasmin.harber@example.com
-                      email_verified_at: '2024-05-27T12:47:49.000000Z'
-                      phone: +1-947-859-0007
-                      birthday: '2016-10-03T00:00:00.000000Z'
-                      gender: male
-                      about: 'Voluptas aut voluptas velit et minima. Non provident libero minus asperiores. Id incidunt magnam minima quibusdam est. Beatae est quis et. Aliquam aperiam animi officiis molestias.'
-                      is_notifiable: 0
-                      created_at: '2024-05-27T12:47:49.000000Z'
-                      updated_at: '2024-05-27T12:47:49.000000Z'
-                      location_id: 4
-                    -
-                      id: 11
-                      name: 'Murl Hermiston DDS'
-                      email: cale.tremblay@example.net
-                      email_verified_at: '2024-05-27T12:47:49.000000Z'
-                      phone: 774.540.8721
-                      birthday: '2014-06-19T00:00:00.000000Z'
-                      gender: male
-                      about: 'Et in aut rerum ipsum. Enim tempora libero aut ducimus et accusantium eius dolorem. Soluta voluptatem explicabo officia vitae velit.'
-                      is_notifiable: 1
-                      created_at: '2024-05-27T12:47:49.000000Z'
-                      updated_at: '2024-05-27T12:47:49.000000Z'
-                      location_id: 4
-                  message: true
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  data:
-                    type: array
-                    example:
-                      -
-                        id: 1
-                        name: 'Test User'
-                        email: test@example.com
-                        email_verified_at: '2024-05-27T12:47:47.000000Z'
-                        phone: '+12107875770'
-                        birthday: '1989-06-26T00:00:00.000000Z'
-                        gender: male
-                        about: 'Voluptas veniam voluptas nostrum culpa qui cupiditate alias. Exercitationem ea molestiae vel fuga. Fugit quia quia velit doloremque.'
-                        is_notifiable: 0
-                        created_at: '2024-05-27T12:47:47.000000Z'
-                        updated_at: '2024-05-27T12:47:49.000000Z'
-                        location_id: 7
-                      -
-                        id: 2
-                        name: 'Prof. Nya Klein'
-                        email: hreichel@example.org
-                        email_verified_at: '2024-05-27T12:47:47.000000Z'
-                        phone: +1.413.956.1942
-                        birthday: '1984-06-24T00:00:00.000000Z'
-                        gender: female
-                        about: 'Ut deleniti doloribus ducimus. Dignissimos veniam quo nisi aperiam a numquam nam. Incidunt dolor corrupti ea velit commodi fugiat dolores quod. Autem aspernatur dolor et esse neque corporis et.'
-                        is_notifiable: 1
-                        created_at: '2024-05-27T12:47:49.000000Z'
-                        updated_at: '2024-05-27T12:47:49.000000Z'
-                        location_id: 6
-                      -
-                        id: 3
-                        name: 'Mr. Eriberto Larkin'
-                        email: sbecker@example.com
-                        email_verified_at: '2024-05-27T12:47:47.000000Z'
-                        phone: 385.736.4516
-                        birthday: '2020-09-26T00:00:00.000000Z'
-                        gender: male
-                        about: 'Debitis modi dolores atque perferendis. Enim animi soluta animi aspernatur dolores cum consequatur. Ducimus voluptatem similique dolor nostrum earum tempora esse consequatur.'
-                        is_notifiable: 0
-                        created_at: '2024-05-27T12:47:49.000000Z'
-                        updated_at: '2024-05-27T12:47:49.000000Z'
-                        location_id: 2
-                      -
-                        id: 4
-                        name: 'Dominique Borer'
-                        email: nelda.morar@example.net
-                        email_verified_at: '2024-05-27T12:47:47.000000Z'
-                        phone: 740.426.2544
-                        birthday: '1989-07-15T00:00:00.000000Z'
-                        gender: female
-                        about: 'Minus iure accusamus quaerat laudantium enim autem dolores nihil. Ullam perferendis cum tempore cumque dignissimos totam delectus. Consectetur nobis beatae repellat omnis est illo.'
-                        is_notifiable: 1
-                        created_at: '2024-05-27T12:47:49.000000Z'
-                        updated_at: '2024-05-27T12:47:49.000000Z'
-                        location_id: 4
-                      -
-                        id: 5
-                        name: 'German Koepp'
-                        email: ari.greenholt@example.com
-                        email_verified_at: '2024-05-27T12:47:48.000000Z'
-                        phone: 1-820-509-5431
-                        birthday: '2008-07-19T00:00:00.000000Z'
-                        gender: male
-                        about: 'Necessitatibus rerum sed non voluptatem at est et. Sequi sit voluptate dolores. Quo cupiditate sunt enim corporis eius voluptatem.'
-                        is_notifiable: 0
-                        created_at: '2024-05-27T12:47:49.000000Z'
-                        updated_at: '2024-05-27T12:47:49.000000Z'
-                        location_id: 6
-                      -
-                        id: 6
-                        name: 'Berniece Nienow'
-                        email: fvandervort@example.com
-                        email_verified_at: '2024-05-27T12:47:48.000000Z'
-                        phone: 947.857.5748
-                        birthday: '2021-06-16T00:00:00.000000Z'
-                        gender: female
-                        about: 'Voluptas voluptatem quo dolorem commodi ex velit. Maiores possimus laboriosam saepe odit assumenda. Necessitatibus amet itaque expedita.'
-                        is_notifiable: 1
-                        created_at: '2024-05-27T12:47:49.000000Z'
-                        updated_at: '2024-05-27T12:47:49.000000Z'
-                        location_id: 2
-                      -
-                        id: 7
-                        name: 'Clark Jones'
-                        email: hamill.ada@example.org
-                        email_verified_at: '2024-05-27T12:47:48.000000Z'
-                        phone: 1-860-591-2393
-                        birthday: '1988-10-19T00:00:00.000000Z'
-                        gender: male
-                        about: 'Qui et voluptas dolorem laudantium iure aut. Doloremque ut totam est sit qui corporis officia.'
-                        is_notifiable: 0
-                        created_at: '2024-05-27T12:47:49.000000Z'
-                        updated_at: '2024-05-27T12:47:49.000000Z'
-                        location_id: 1
-                      -
-                        id: 8
-                        name: 'Raphaelle Bins'
-                        email: schoen.zetta@example.org
-                        email_verified_at: '2024-05-27T12:47:48.000000Z'
-                        phone: 616-802-8932
-                        birthday: '2018-07-19T00:00:00.000000Z'
-                        gender: female
-                        about: 'Beatae fuga sunt reiciendis a eius tenetur voluptatum. Consequatur consequatur quia dicta consequatur. Iusto natus nihil aut voluptas est modi. Nihil occaecati qui aut quisquam voluptas.'
-                        is_notifiable: 0
-                        created_at: '2024-05-27T12:47:49.000000Z'
-                        updated_at: '2024-05-27T12:47:49.000000Z'
-                        location_id: 10
-                      -
-                        id: 9
-                        name: 'Miss Yadira Okuneva I'
-                        email: alf80@example.net
-                        email_verified_at: '2024-05-27T12:47:48.000000Z'
-                        phone: 1-272-633-6831
-                        birthday: '2013-03-08T00:00:00.000000Z'
-                        gender: female
-                        about: 'Fugit ipsam deserunt doloremque sed ea et. Occaecati exercitationem in est blanditiis natus. Inventore ad rerum iure sequi soluta.'
-                        is_notifiable: 0
-                        created_at: '2024-05-27T12:47:49.000000Z'
-                        updated_at: '2024-05-27T12:47:49.000000Z'
-                        location_id: 5
-                      -
-                        id: 10
-                        name: 'Dr. Kaleigh Funk'
-                        email: jasmin.harber@example.com
-                        email_verified_at: '2024-05-27T12:47:49.000000Z'
-                        phone: +1-947-859-0007
-                        birthday: '2016-10-03T00:00:00.000000Z'
-                        gender: male
-                        about: 'Voluptas aut voluptas velit et minima. Non provident libero minus asperiores. Id incidunt magnam minima quibusdam est. Beatae est quis et. Aliquam aperiam animi officiis molestias.'
-                        is_notifiable: 0
-                        created_at: '2024-05-27T12:47:49.000000Z'
-                        updated_at: '2024-05-27T12:47:49.000000Z'
-                        location_id: 4
-                      -
-                        id: 11
-                        name: 'Murl Hermiston DDS'
-                        email: cale.tremblay@example.net
-                        email_verified_at: '2024-05-27T12:47:49.000000Z'
-                        phone: 774.540.8721
-                        birthday: '2014-06-19T00:00:00.000000Z'
-                        gender: male
-                        about: 'Et in aut rerum ipsum. Enim tempora libero aut ducimus et accusantium eius dolorem. Soluta voluptatem explicabo officia vitae velit.'
-                        is_notifiable: 1
-                        created_at: '2024-05-27T12:47:49.000000Z'
-                        updated_at: '2024-05-27T12:47:49.000000Z'
-                        location_id: 4
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1
-                        name:
-                          type: string
-                          example: 'Test User'
-                        email:
-                          type: string
-                          example: test@example.com
-                        email_verified_at:
-                          type: string
-                          example: '2024-05-27T12:47:47.000000Z'
-                        phone:
-                          type: string
-                          example: '+12107875770'
-                        birthday:
-                          type: string
-                          example: '1989-06-26T00:00:00.000000Z'
-                        gender:
-                          type: string
-                          example: male
-                        about:
-                          type: string
-                          example: 'Voluptas veniam voluptas nostrum culpa qui cupiditate alias. Exercitationem ea molestiae vel fuga. Fugit quia quia velit doloremque.'
-                        is_notifiable:
-                          type: integer
-                          example: 0
-                        created_at:
-                          type: string
-                          example: '2024-05-27T12:47:47.000000Z'
-                        updated_at:
-                          type: string
-                          example: '2024-05-27T12:47:49.000000Z'
-                        location_id:
-                          type: integer
-                          example: 7
-                  message:
-                    type: boolean
-                    example: true
-      tags:
-        - Endpoints
-      security: []
-  /api/user/update:
-    post:
-      summary: ''
-      operationId: postApiUserUpdate
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Must not be greater than 255 characters. Must be at least 1 character.'
-                  example: rdgaahyunpgmnooudynkyvhzdlkdkhzvoniirtenskyrvxeurioqgldxfijaexxzlrigvzidjcbxqwotiav
-                email:
-                  type: string
-                  description: 'Must be a valid email address. Must not be greater than 255 characters. Must be at least 3 characters.'
-                  example: emmett46@example.net
-                phone:
-                  type: string
-                  description: 'Must be at least 3 characters. Must not be greater than 14 characters.'
-                  example: mwjrruljcycana
-                password:
-                  type: string
-                  description: 'Must not be greater than 255 characters. Must be at least 6 characters.'
-                  example: 'ul8@"m3B9(/-t'
-                birthday:
-                  type: string
-                  description: 'Must be a valid date.'
-                  example: '2024-05-27T13:16:31'
-                gender:
-                  type: string
-                  description: ''
-                  example: female
-                  enum:
-                    - male
-                    - female
-                about:
-                  type: string
-                  description: ''
-                  example: dicta
-                is_notifiable:
-                  type: boolean
-                  description: ''
-                  example: true
-                location_id:
-                  type: string
-                  description: ''
-                  example: null
-      security: []
-  /api/user/destroy:
-    post:
-      summary: ''
-      operationId: postApiUserDestroy
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
   /api/auth/code/send:
     post:
       summary: 'Отправить код'
       operationId: ''
-      description: 'На номер телефона пользователя отправляется код подтверждения'
-      parameters:
-        -
-          in: query
-          name: phone_rule
-          description: 'Если есть необходимо проверить наличие/отсуствие телефона в базе'
-          example: dont_exist
-          required: true
-          schema:
-            type: string
-            description: 'Если есть необходимо проверить наличие/отсуствие телефона в базе'
-            example: dont_exist
-            enum:
-              - exist
-              - dont_exist
-        -
-          in: query
-          name: type
-          description: 'Куда отправить код'
-          example: email
-          required: true
-          schema:
-            type: string
-            description: 'Куда отправить код'
-            example: email
-            enum:
-              - phone
-              - email
+      description: 'На электронную почту пользователя отправляется код подтверждения'
+      parameters: []
       responses:
         200:
           description: ''
@@ -479,31 +32,6 @@ paths:
                     type: string
                     example: OK
                     description: ''
-        422:
-          description: 'Если данные не прошли валидацию'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  data:
-                    phone:
-                      - 'Номер телефона обязателен к заполнению'
-                  message: 'Номер телефона обязателен к заполнению'
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      phone:
-                        type: array
-                        example:
-                          - 'Номер телефона обязателен к заполнению'
-                        items:
-                          type: string
-                  message:
-                    type: string
-                    example: 'Номер телефона обязателен к заполнению'
-                    description: ''
       tags:
         - Авторизация
       requestBody:
@@ -515,8 +43,8 @@ paths:
               properties:
                 subject:
                   type: string
-                  description: ''
-                  example: porro
+                  description: 'Must be a valid email address.'
+                  example: rex16@example.com
               required:
                 - subject
       security: []
@@ -556,12 +84,12 @@ paths:
               properties:
                 subject:
                   type: string
-                  description: ''
-                  example: unde
+                  description: 'Must be a valid email address.'
+                  example: shyanne.cummerata@example.org
                 code:
                   type: string
-                  description: 'Must match the regex /^([0-9]*)$/. Must be  digits.'
-                  example: ''
+                  description: 'Must match the regex /^([0-9]*)$/. Must be 4 digits.'
+                  example: '5053'
               required:
                 - subject
                 - code
@@ -613,31 +141,6 @@ paths:
                     type: string
                     example: 'Код устарел'
                     description: ''
-        422:
-          description: 'Если данные не прошли валидацию'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  data:
-                    phone:
-                      - 'Номер телефона обязателен к заполнению'
-                  message: 'Номер телефона обязателен к заполнению'
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      phone:
-                        type: array
-                        example:
-                          - 'Номер телефона обязателен к заполнению'
-                        items:
-                          type: string
-                  message:
-                    type: string
-                    example: 'Номер телефона обязателен к заполнению'
-                    description: ''
       tags:
         - Авторизация
       requestBody:
@@ -650,23 +153,23 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters. Must be at least 1 character.'
-                  example: fgvcutvzksqswriapmsakc
+                  example: tsrtlgzxdsmjnndfzyseldbahufeyiq
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters. Must be at least 3 characters.'
-                  example: michael14@example.com
+                  example: delores.gottlieb@example.net
                 phone:
                   type: string
                   description: 'Must be at least 3 characters. Must not be greater than 20 characters.'
-                  example: rujjdvseqtqrkvgqxjn
+                  example: vyyrbosi
                 password:
                   type: string
                   description: 'Must not be greater than 255 characters. Must be at least 6 characters.'
-                  example: "elhk%b;f0+6Rx{f.k'<"
+                  example: CjxZC=-WuoLXqk<X~
                 birthday:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-05-27T13:16:31'
+                  example: '2024-05-30T08:07:16'
                 gender:
                   type: string
                   description: ''
@@ -677,7 +180,7 @@ paths:
                 is_notifiable:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
                 location_id:
                   type: string
                   description: ''
@@ -695,7 +198,7 @@ paths:
     post:
       summary: 'Войти в аккаунт'
       operationId: ''
-      description: 'Эндпоинт необходим для аунтетификации пользователя в системе'
+      description: 'Эндпоинт необходим для аутентификации пользователя в системе'
       parameters: []
       responses:
         200:
@@ -750,11 +253,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: madelyn68@example.com
+                  example: emory.homenick@example.org
                 password:
                   type: string
                   description: 'Must be at least 6 characters. Must not be greater than 255 characters.'
-                  example: '[2?G$5icJ'
+                  example: '[vrA0]Sau8*{~F'
               required:
                 - email
                 - password
@@ -791,31 +294,140 @@ paths:
             schema:
               type: object
               properties:
-                phone:
+                email:
                   type: string
-                  description: 'Must match the regex /^([0-9\s\-\+\(\)]*)$/. Must be between 8 and 12 digits.'
-                  example: '69335395'
+                  description: 'Must be a valid email address.'
+                  example: haley.demetris@example.net
                 code:
                   type: string
-                  description: 'Must match the regex /^([0-9]*)$/. Must be  digits.'
-                  example: ''
+                  description: 'Must match the regex /^([0-9]*)$/. Must be 4 digits.'
+                  example: '1909'
                 password:
                   type: string
                   description: 'This field is required when <code>password_confirmation</code> is present. Must be at least 6 characters. Must not be greater than 255 characters.'
-                  example: ')(nr!Kl%i.:q|Ya,B'
+                  example: "b-?*`i'(Ed{$u>=sh{"
                 password_confirmation:
                   type: string
                   description: 'This field is required when <code>password</code> is present.  The value and <code>password</code> must match. Must be at least 6 characters.'
-                  example: mlcwtocrnfkjxyltrrkvsihsnzhfdilsnbqmripcrvbhbzmdzsgpiqxgnldcusvkdxdpiew
+                  example: btrsfnxexzcwejjmiijplyilvifieqvvltluvmndalltfwnprvg
               required:
-                - phone
+                - email
                 - code
                 - password
       security: []
+  /api/user:
+    get:
+      summary: 'Список пользователей'
+      operationId: ''
+      description: 'Отобразить список зарегистрированных пользователей'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Пользователи
+      security: []
+  '/api/user/detail/{user_id}':
+    get:
+      summary: 'Профиль пользователя'
+      operationId: ''
+      description: 'Отобразить профиль пользователя'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Пользователи
+      security: []
+    parameters:
+      -
+        in: path
+        name: user_id
+        description: 'The ID of the user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/user/update:
+    post:
+      summary: 'Редактирование профиля'
+      operationId: ''
+      description: 'Редактирование профиля авторизированного пользователя'
+      parameters: []
+      responses: {  }
+      tags:
+        - Пользователи
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters. Must be at least 1 character.'
+                  example: iicrrgakhuujiqdeyvhwabmhwsultdxeitqrhmyagvfpufhcbjtsyubzndwmgusbjsktnmgkqcwkdffqgxgglbf
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters. Must be at least 3 characters.'
+                  example: ola.keebler@example.com
+                phone:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 14 characters.'
+                  example: alxy
+                password:
+                  type: string
+                  description: 'Must not be greater than 255 characters. Must be at least 6 characters.'
+                  example: '_F=HG?('
+                birthday:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2024-05-30T08:07:16'
+                gender:
+                  type: string
+                  description: ''
+                  example: female
+                  enum:
+                    - male
+                    - female
+                about:
+                  type: string
+                  description: ''
+                  example: commodi
+                is_notifiable:
+                  type: boolean
+                  description: ''
+                  example: false
+                location_id:
+                  type: string
+                  description: ''
+                  example: null
+      security: []
 tags:
-  -
-    name: Endpoints
-    description: ''
   -
     name: Авторизация
     description: 'API предназначенное для авторизации пользователя'
+  -
+    name: Пользователи
+    description: 'API для взаимодействия с профилями пользователей'

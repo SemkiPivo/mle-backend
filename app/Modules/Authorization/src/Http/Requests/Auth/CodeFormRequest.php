@@ -5,6 +5,7 @@ namespace Authorization\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CodeFormRequest extends FormRequest
 {
@@ -23,22 +24,9 @@ class CodeFormRequest extends FormRequest
      */
     public function rules(Request $request): array
     {
-        if ($request->get("rule") === "exist"){
-            return [
-                "subject" => ["required","exists:users"]
-            ];
-        }
-        if ($request->get("rule") === "dont_exist"){
-            return [
-                "subject" => ["required","unique:users"]
-            ];
-        }
-        if (!$request->get("rule")){
-            return [
-                "subject" => ["required"]
-            ];
-        }
-
+        return [
+            "subject" => ["required", "email"],
+        ];
     }
 
     public function messages()
